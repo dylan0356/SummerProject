@@ -26,9 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = standingSprite;
-
         standingSize = b.size;
-        // crouchingSize = new Vector2(b.size.x, b.size.y / 2f);
     }
     void Update()
     {
@@ -39,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Crouch");
             spriteRenderer.sprite = crouchingSprite;
             b.size = crouchingSize;
+            b.offset = new Vector2(0f, -0.5f);
             
         }
         else if (Input.GetButtonUp("Fire1"))
@@ -46,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Stand");
             spriteRenderer.sprite = standingSprite;
             b.size = standingSize;
+            b.offset = new Vector2(0f, 0f);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded())
