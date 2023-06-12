@@ -8,15 +8,45 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 3f;
     private float jumpPower = 5f;
     private bool isFacingRight = true;
+    private Animator animator;
+
+    public SpriteRenderer spriteRenderer;
+    public Sprite standingSprite;
+    public Sprite crouchingSprite;
+    public BoxCollider2D b;
+    public Vector2 standingSize;
+    public Vector2 crouchingSize;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    void Start() {
+        animator = GetComponent<Animator>();
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = standingSprite;
+
+        standingSize = b.size;
+        // crouchingSize = new Vector2(b.size.x, b.size.y / 2f);
+    }
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("Crouch");
+            spriteRenderer.sprite = crouchingSprite;
+            b.size = crouchingSize;
+            
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            Debug.Log("Stand");
+            spriteRenderer.sprite = standingSprite;
+            b.size = standingSize;
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
