@@ -55,6 +55,7 @@ public class EnemyScript : MonoBehaviour
 
         if (hit.collider != null) {
             if (hit.collider.gameObject.CompareTag("Player")) {
+                Debug.Log("see plaayer");
                 val = true;
             } else {
                 val = false;
