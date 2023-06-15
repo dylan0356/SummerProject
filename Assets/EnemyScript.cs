@@ -55,15 +55,13 @@ public class EnemyScript : MonoBehaviour
 
         if (hit.collider != null) {
             if (hit.collider.gameObject.CompareTag("Player")) {
-                Debug.Log("see plaayer");
+                
                 val = true;
             } else {
                 val = false;
             }
-            Debug.Log("Hello World");
             Debug.DrawLine(castPoint.position, hit.point, Color.yellow);
         } else {
-            Debug.Log("Hello World!!!");
             Debug.DrawLine(castPoint.position, endPos, Color.blue);
         }
         return val;
