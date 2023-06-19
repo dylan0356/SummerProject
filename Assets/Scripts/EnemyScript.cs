@@ -49,6 +49,8 @@ public class EnemyScript : MonoBehaviour
         } else {
             Pace();
         }
+
+        
     }
     
     bool CanSeePlayer(float distance) {
