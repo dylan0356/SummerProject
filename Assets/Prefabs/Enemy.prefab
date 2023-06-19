@@ -176,7 +176,10 @@ MonoBehaviour:
   player: {fileID: 0}
   castPoint: {fileID: 9069917032897097545}
   speed: 3
-  agroRange: 3
+  agroRange: 2.75
+  paceSpeed: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!1 &5425519700622235814
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +251,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 4
+  m_PointLightOuterRadius: 3
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -271,7 +274,7 @@ GameObject:
   m_Layer: 7
   m_Name: CastPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

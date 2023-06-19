@@ -20,6 +20,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject pointA;
     public GameObject pointB;
     private Transform currentPoint;
+    
 
 
 
@@ -97,7 +98,8 @@ public class EnemyScript : MonoBehaviour
     void StopChasingPlayer() {
         isSearching = false;
         isAgro = false;
-        rb2d.velocity = new Vector2(0, 0);
+        // rb2d.velocity = new Vector2(0, 0);
+        Pace();
     }
 
     void Pace() {
