@@ -15,10 +15,18 @@ public class EnemyScript : MonoBehaviour
     private bool isAgro = false;
     private bool isSearching;
 
+    // pacing stuff
+    [SerializeField] float paceSpeed;
+    public GameObject pointA;
+    public GameObject pointB;
+    private Transform currentPoint;
+
+
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        currentPoint = pointB.transform;
     }
 
     
@@ -37,6 +45,8 @@ public class EnemyScript : MonoBehaviour
         }
         if (isAgro) {
             ChasePlayer();
+        } else {
+            Pace();
         }
     }
     
@@ -88,5 +98,28 @@ public class EnemyScript : MonoBehaviour
         isSearching = false;
         isAgro = false;
         rb2d.velocity = new Vector2(0, 0);
+    }
+
+    void Pace() {
+        
+        Vector2 point = currentPoint.position - transform.position;
+
+        if (currentPoint == pointB.transform) {
+            rb2d.velocity = new Vector2(paceSpeed, 0);
+        } else {
+            rb2d.velocity = new Vector2(-paceSpeed, 0);
+
+        }
+
+        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform) {
+            currentPoint = pointA.transform;
+            transform.localScale = new Vector2(-1, 1);
+            isFacingLeft = true;
+        }
+        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform) {
+                currentPoint = pointB.transform;
+                transform.localScale = new Vector2(1, 1);
+                isFacingLeft = false;
+        }
     }
 }
