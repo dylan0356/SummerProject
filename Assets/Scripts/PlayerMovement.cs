@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     // dash variables
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 24f;
+    private float dashingPower = 50f;
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
@@ -31,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // if dashing dont allow movement
         if (isDashing) {
+            animator.SetBool("isDashing", true);
             return;
+        } else {
+            animator.SetBool("isDashing", false);
         }
 
         // get left right input
@@ -72,9 +75,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (isDashing) {
+            animator.SetBool("isDashing", true);
             return;
+        } else {
+            animator.SetBool("isDashing", false);
         }
-        
+
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
