@@ -17,11 +17,23 @@ public class PlayerMovement : MonoBehaviour
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
 
+    // wall slide and jump variables
+    private bool isWallSliding;
+    private float wallSlidingSpeed = 2f;
+    private bool isWallJumping;
+    private float wallJumpingDirection;
+    private float wallJumpingTime = 0.2f;
+    private float wallJumpingCounter;
+    private float wallJumpingDuration = 0.4f;
+    private Vector2 wallJumpingPower = new Vector2(6f, 15f);
+
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
+    [SerializeField] private Transform wallCheck;
+    
     
 
     void Start() {
@@ -55,6 +67,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
 
+        if (isWallSliding) {
+            animator.SetBool("isWallSliding", true);
+        } else {
+            animator.SetBool("isWallSliding", false);
+        }
+
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -68,7 +86,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) {
             StartCoroutine(Dash());
         }
-        Flip();
+
+        WallSlide();
+        WallJump();
+        if (!isWallJumping) {
+            Flip();
+        }
 
     }
 
@@ -77,11 +100,13 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing) {
             animator.SetBool("isDashing", true);
             return;
-        } else {
+            } else {
             animator.SetBool("isDashing", false);
         }
 
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!isWallJumping) {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
     }
 
     private void Flip()
@@ -96,6 +121,49 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private bool isWalled() {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, groundLayer);
+    }
+
+    private void WallSlide() {
+        if (isWalled() && !isGrounded() && horizontal != 0f) {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        } else {
+            isWallSliding = false;
+        }
+    }
+
+    private void WallJump() {
+        if (isWallSliding) {
+            isWallJumping = false;
+            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingCounter = wallJumpingTime;
+
+            CancelInvoke(nameof(StopWallJumping));
+        } else {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f) {
+            isWallJumping = true;
+            rb.velocity = new Vector2(wallJumpingPower.x * wallJumpingDirection, wallJumpingPower.y);
+            wallJumpingCounter = 0f; // prevents player from spamming jump
+
+            if (transform.localScale.x != wallJumpingDirection) {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
+    }
+    private void StopWallJumping() {
+        isWallJumping = false;
+
     }
 
     private IEnumerator Dash() {
