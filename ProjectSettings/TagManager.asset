@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ladder
   - Teleporter
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
