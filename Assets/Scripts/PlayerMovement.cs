@@ -24,8 +24,10 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.4f;
+    private float wallJumpingDuration = 0.3f;
     private Vector2 wallJumpingPower = new Vector2(6f, 15f);
+
+    private bool doubleJump;
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -41,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        if (isGrounded() && !Input.GetButton("Jump")) {
+            doubleJump = false;
+        }
+
         // if dashing dont allow movement
         if (isDashing) {
             animator.SetBool("isDashing", true);
@@ -73,9 +79,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isWallSliding", false);
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded())
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            if (isGrounded() || doubleJump) {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                doubleJump = !doubleJump;
+            }
         }
         
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
