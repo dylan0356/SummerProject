@@ -29,7 +29,12 @@ public class FlyerScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("Player hit");
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+            PlayerHealth.health--;
+            if (PlayerHealth.health <= 0) {
+                collision.gameObject.GetComponent<PlayerHealth>().Death();
+            }
+            
+            // collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
         }
 
         //update for player attack eventually
