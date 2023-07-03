@@ -7,6 +7,7 @@ TagManager:
   - Ladder
   - Teleporter
   - OneWayPlatform
+  - Enemy
   layers:
   - Default
   - TransparentFX
