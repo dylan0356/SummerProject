@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private GameObject attackArea = default;
+    private GameObject light;
     private Animator animator;
 
     private bool attacking = false;
@@ -17,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     {
         attackArea = transform.GetChild(0).gameObject;
         animator = GetComponent<Animator>();
+        light = transform.GetChild(3).gameObject;
     }
 
     
@@ -36,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
                 timer = 0f;
                 attacking = false;
                 attackArea.SetActive(false);
+                light.SetActive(false);
                 
             }
         }
@@ -45,5 +48,6 @@ public class PlayerAttack : MonoBehaviour
     private void Attack() {
         attacking = true;
         attackArea.SetActive(true);
+        light.SetActive(true);
     }
 }
