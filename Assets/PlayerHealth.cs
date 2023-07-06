@@ -28,5 +28,6 @@ public class PlayerHealth : MonoBehaviour
     public void Death() {
         // eventually trigger game over screen here
         Destroy(gameObject);
+        ScoreScript.ResetScore();
     }
 }
