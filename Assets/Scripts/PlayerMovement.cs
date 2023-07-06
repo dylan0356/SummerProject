@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     // dash variables
+    private Image dashImage;
+    [SerializeField] Sprite dashRed;
+    [SerializeField] Sprite dashGreen;
     private bool canDash = true;
     private bool isDashing;
     private float dashingPower = 50f;
@@ -40,9 +44,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Start() {
         animator = GetComponent<Animator>();
+        dashImage = GameObject.Find("DashIndicator").GetComponent<Image>();
     }
     void Update()
     {
+        if (!canDash) {
+            dashImage.sprite = dashRed;
+        } else {
+            dashImage.sprite = dashGreen;
+        }
+
         if (isGrounded() && !Input.GetButton("Jump")) {
             doubleJump = false;
         }
@@ -98,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
         WallJump();
+        
         if (!isWallJumping) {
             Flip();
         }
