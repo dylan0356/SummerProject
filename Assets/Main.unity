@@ -1867,6 +1867,10 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 1616881087}
+    - target: {fileID: 7077268242306055150, guid: 05243cb038a01c84d88e39d540628efd, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2340,6 +2344,7 @@ GameObject:
   - component: {fileID: 1174397966}
   - component: {fileID: 1174397965}
   - component: {fileID: 1174397969}
+  - component: {fileID: 1174397970}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2478,6 +2483,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 946259405}
+--- !u!114 &1174397970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174397964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a159d8c7e043c2948a1d06cc4894828b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.6500007
+      outSlope: 0.6500007
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.153846
+      value: 0.1
+      inSlope: 0.26590943
+      outSlope: 0.26590943
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.1181818
+      outSlope: -0.1181818
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 0.5
 --- !u!4 &1186004270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4042523082358805383, guid: a71099f52745c284f8ee2bcb7083939d, type: 3}
