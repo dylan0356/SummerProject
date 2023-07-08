@@ -5,15 +5,14 @@ using UnityEngine;
 public class FlyerScript : MonoBehaviour
 {
     [SerializeField] private Transform player;
-
-
+    
+    private Animator animator;
     private float moveSpeed;
     private float engageDistance = 10f;
 
-
-    
     void Start()
     {
+        animator = GetComponent<Animator>();
         moveSpeed = Random.Range(3f, 6f);
     }
 
