@@ -386,6 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242691ca7b84bce4bb412ced95baac6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashRed: {fileID: 824849766, guid: 2fa846d076569f34292cc226248a9acd, type: 3}
+  dashGreen: {fileID: 341792883, guid: 2fa846d076569f34292cc226248a9acd, type: 3}
   rb: {fileID: 6892820962858530518}
   groundCheck: {fileID: 5853266484356706187}
   groundLayer:
