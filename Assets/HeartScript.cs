@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeartScript : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player") && PlayerHealth.health < 5) {
             PlayerHealth.health++;
             Destroy(gameObject);
         }

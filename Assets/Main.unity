@@ -1419,6 +1419,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 0.5
+  target: {fileID: 946259405}
 --- !u!4 &1186004270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4042523082358805383, guid: a71099f52745c284f8ee2bcb7083939d, type: 3}
@@ -22237,6 +22238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyerEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6823771101522223442, guid: 10df02ba7dabea04097751c17c51f9c1, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8757992087552832826, guid: 10df02ba7dabea04097751c17c51f9c1, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -22399,9 +22404,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2690128272608971047, guid: 1856ac875a7de124d8e3a6a9bfa7ee0a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903061791016613158, guid: 1856ac875a7de124d8e3a6a9bfa7ee0a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 5249267215821836620, guid: 1856ac875a7de124d8e3a6a9bfa7ee0a, type: 3}
       propertyPath: m_Name
       value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249267215821836620, guid: 1856ac875a7de124d8e3a6a9bfa7ee0a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
