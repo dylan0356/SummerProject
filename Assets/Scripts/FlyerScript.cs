@@ -10,10 +10,12 @@ public class FlyerScript : MonoBehaviour
     private float moveSpeed;
     private float engageDistance = 10f;
 
+    // private float duration = 0.5f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
-        moveSpeed = Random.Range(3f, 6f);
+        moveSpeed = Random.Range(4f, 5f);
     }
 
     
@@ -27,16 +29,23 @@ public class FlyerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            Debug.Log("Player hit");
             PlayerHealth.health--;
+            // StartCoroutine(NoBox());
             if (PlayerHealth.health <= 0) {
                 collision.gameObject.GetComponent<PlayerHealth>().Death();
             }
-            
-            // collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
         }
-
-        //update for player attack eventually
     }
+
+    // IEnumerator NoBox() {
+    //     float elapsed = 0f;
+    //     BoxCollider2D bc = GetComponent<BoxCollider2D>();
+    //     while (elapsed < duration) {
+    //         elapsed += Time.deltaTime;
+    //         bc.enabled = false;
+    //     }
+    //     bc.enabled = true;
+    //     return null;
+    // }
 
 }

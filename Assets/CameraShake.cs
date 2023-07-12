@@ -29,7 +29,7 @@ public class CameraShake : MonoBehaviour
             transform.position = originalPos + Random.insideUnitSphere * strength;
             yield return null;
         }
-        transform.position = target.position;
+        // transform.position = target.position;
         // transform.position = originalPos;
     }
 }

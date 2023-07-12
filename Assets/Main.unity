@@ -1008,6 +1008,18 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 1616881087}
+    - target: {fileID: 5677537686885532248, guid: 05243cb038a01c84d88e39d540628efd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.16470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677537686885532248, guid: 05243cb038a01c84d88e39d540628efd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.7607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677537686885532248, guid: 05243cb038a01c84d88e39d540628efd, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.97647065
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
