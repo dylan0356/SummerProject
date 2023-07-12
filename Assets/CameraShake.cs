@@ -7,6 +7,8 @@ public class CameraShake : MonoBehaviour
     public static bool start = false;
     public AnimationCurve curve;
     public float duration = 0.5f;
+
+    [SerializeField] private Transform target;
     
     void Update()
     {
@@ -17,15 +19,17 @@ public class CameraShake : MonoBehaviour
     }
 
     IEnumerator Shaking() {
-        Vector3 originalPos = transform.position;
+        // Vector3 originalPos = transform.position;
         float elapsed = 0.0f;
 
         while (elapsed < duration) {
+            Vector3 originalPos = transform.position;
             elapsed += Time.deltaTime;
             float strength = curve.Evaluate(elapsed / duration);
             transform.position = originalPos + Random.insideUnitSphere * strength;
             yield return null;
         }
-        transform.position = originalPos;
+        transform.position = target.position;
+        // transform.position = originalPos;
     }
 }
