@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public bool start = false;
+    public static bool start = false;
     public AnimationCurve curve;
     public float duration = 0.5f;
     

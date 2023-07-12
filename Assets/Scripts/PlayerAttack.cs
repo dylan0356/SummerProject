@@ -49,5 +49,6 @@ public class PlayerAttack : MonoBehaviour
         attacking = true;
         attackArea.SetActive(true);
         light.SetActive(true);
+        CameraShake.start = true;
     }
 }
