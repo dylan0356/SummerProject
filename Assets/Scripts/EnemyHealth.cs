@@ -5,11 +5,21 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health = 2;
+    public GameObject heart;
+
+    void Start() {
+        heart = GameObject.Find("Heart");
+    }
 
     public void Damage(int damage) {
         health -= damage;
         if (health <= 0) {
             Destroy(gameObject);
+            // Randomly drop a heart
+            int random = Random.Range(0, 5);
+            if (random == 1) {
+                Instantiate(heart, transform.position, Quaternion.identity);
+            }
             ScoreScript.AddScore(10);
         }
     }
