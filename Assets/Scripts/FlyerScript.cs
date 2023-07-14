@@ -7,7 +7,7 @@ public class FlyerScript : MonoBehaviour
     [SerializeField] private Transform player;
     
     private Animator animator;
-    private float moveSpeed;
+    private float moveSpeed = 4f;
     private float engageDistance = 10f;
 
     // private float duration = 0.5f;
@@ -15,7 +15,6 @@ public class FlyerScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        moveSpeed = Random.Range(4f, 5f);
     }
 
     
