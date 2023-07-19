@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -29,5 +30,6 @@ public class PlayerHealth : MonoBehaviour
         // eventually trigger game over screen here
         Destroy(gameObject);
         ScoreScript.ResetScore();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
