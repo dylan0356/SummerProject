@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlyerScript : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    private Transform player;
     
     private Animator animator;
     private float moveSpeed = 4f;
@@ -15,6 +15,7 @@ public class FlyerScript : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     

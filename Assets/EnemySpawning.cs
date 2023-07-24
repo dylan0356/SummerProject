@@ -9,8 +9,6 @@ public class EnemySpawning : MonoBehaviour
 
     private float flyerInterval = 2.5f;
 
-
-    
     void Start()
     {
         StartCoroutine(spawnEnemy(flyerInterval, flyerEnemy));
@@ -18,6 +16,7 @@ public class EnemySpawning : MonoBehaviour
 
     private IEnumerator spawnEnemy(float interval, GameObject enemy) {
         yield return new WaitForSeconds(interval);
+        Debug.Log("Spawned enemy");
         GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0), Quaternion.identity);
         StartCoroutine(spawnEnemy(interval, enemy));
     }
