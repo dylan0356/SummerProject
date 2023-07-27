@@ -28,7 +28,6 @@ public class EnemySpawning : MonoBehaviour
             lastScore = ScoreScript.scoreVal;
             }
         }
-
         StartCoroutine(spawnEnemy(interval, enemy));
     }
     

@@ -39,6 +39,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private Transform wallCheck;
+
+
+    // sound FX
+    [SerializeField] private AudioSource runSound;
+    private int runSoundTimer = 0;
+    private bool isRunning = false;
+
+    [SerializeField] private AudioSource jumpSound;
     
     
 
@@ -72,10 +80,12 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal > 0f || horizontal < 0f)
         {
             animator.SetBool("isRunning", true);
+            isRunning = true;
         }
         else
         {
             animator.SetBool("isRunning", false);
+            isRunning = false;
         }
 
         if (!isGrounded()) {
@@ -95,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
             if (isGrounded() || doubleJump) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 doubleJump = !doubleJump;
+                jumpSound.Play();
             }
         }
         
@@ -105,6 +116,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) {
             StartCoroutine(Dash());
+        }
+
+        // sound FX
+        if (isRunning && isGrounded()) {
+            if (runSoundTimer == 0) {
+                runSoundTimer = 40;
+                runSound.Play();
+            } else {
+                runSoundTimer--;
+            }
         }
 
         WallSlide();
