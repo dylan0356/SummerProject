@@ -8,6 +8,7 @@ TagManager:
   - Teleporter
   - OneWayPlatform
   - Enemy
+  - Terrain
   layers:
   - Default
   - TransparentFX

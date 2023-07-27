@@ -47,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning = false;
 
     [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource dashSound;
+    [SerializeField] private AudioSource landingSound;
     
     
 
@@ -116,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) {
             StartCoroutine(Dash());
+            dashSound.Play();
         }
 
         // sound FX
@@ -221,5 +224,11 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("OneWayPlatform") || other.gameObject.CompareTag("Terrain")) {
+            landingSound.Play();
+        }
     }
 }
