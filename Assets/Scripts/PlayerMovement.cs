@@ -42,9 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     // sound FX
-    [SerializeField] private AudioSource runSound;
-    private int runSoundTimer = 0;
-    private bool isRunning = false;
+    // [SerializeField] private AudioSource runSound;
+    // private bool isRunning = false;
 
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private AudioSource dashSound;
@@ -82,12 +81,12 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal > 0f || horizontal < 0f)
         {
             animator.SetBool("isRunning", true);
-            isRunning = true;
+            // isRunning = true; // for running sfx
         }
         else
         {
             animator.SetBool("isRunning", false);
-            isRunning = false;
+            // isRunning = false; // for running sfx
         }
 
         if (!isGrounded()) {
@@ -122,14 +121,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // sound FX
-        if (isRunning && isGrounded()) {
-            if (runSoundTimer == 0) {
-                runSoundTimer = 35;
-                runSound.Play();
-            } else {
-                runSoundTimer--;
-            }
-        }
+        // if (isRunning && isGrounded()) {
+        //     if (!runSound.isPlaying) {
+        //         runSound.Play();
+        //     } else {
+        //         runSound.Stop();
+        //     }
+        // }
 
         WallSlide();
         WallJump();
