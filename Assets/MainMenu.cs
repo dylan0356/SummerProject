@@ -10,13 +10,23 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private AudioSource quitSound;
 
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         startSound.Play();
+        StartCoroutine(WaitStart());
+    }
+
+    IEnumerator WaitStart() {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame() {
-        Application.Quit();
         quitSound.Play();
+        StartCoroutine(WaitQuit());
+    }
+
+    IEnumerator WaitQuit() {
+        yield return new WaitForSeconds(1);
+        Application.Quit();
     }
 
 }
