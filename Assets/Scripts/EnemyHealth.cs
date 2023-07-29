@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int health = 2;
+    // was public before but breaking so trying to makke it private and seeing ifthat works
+    private int health = 1;
     public GameObject heart;
+
+    private AudioSource hitSound;
 
     void Start() {
         heart = GameObject.Find("Heart");
+        hitSound = GetComponent<AudioSource>();
     }
 
     public void Damage(int damage) {
         health -= damage;
         if (health <= 0) {
+            hitSound.Play();
             Destroy(gameObject);
             // Randomly drop a heart
             int random = Random.Range(0, 5);

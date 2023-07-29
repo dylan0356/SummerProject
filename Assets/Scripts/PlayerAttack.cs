@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
 
     private bool attacking = false;
+
+    [SerializeField] private AudioSource attackSound;
     
 
     private float timeToAttack = 0.25f;
@@ -46,6 +48,7 @@ public class PlayerAttack : MonoBehaviour
 
     
     private void Attack() {
+        attackSound.Play();
         attacking = true;
         attackArea.SetActive(true);
         light.SetActive(true);

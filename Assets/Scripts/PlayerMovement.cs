@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         // sound FX
         if (isRunning && isGrounded()) {
             if (runSoundTimer == 0) {
-                runSoundTimer = 40;
+                runSoundTimer = 35;
                 runSound.Play();
             } else {
                 runSoundTimer--;
